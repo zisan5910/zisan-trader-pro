@@ -129,18 +129,19 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-4 gap-2">
           {[
             { icon: ShoppingCart, label: "নতুন বিক্রয়", path: "/sales/new", color: "text-primary", bg: "bg-primary/10" },
             { icon: Package, label: "পণ্য যোগ", path: "/products/add", color: "text-info", bg: "bg-info/10" },
-            { icon: UserPlus, label: "কাস্টমার যোগ", path: "/customers", color: "text-secondary", bg: "bg-secondary/10" },
+            { icon: UserPlus, label: "কাস্টমার যোগ", path: "/customers/add", color: "text-secondary", bg: "bg-secondary/10" },
+            { icon: Smartphone, label: "মোবাইল ব্যাংকিং", path: "/mobile-banking", color: "text-success", bg: "bg-success/10" },
           ].map((a) => (
             <button key={a.path} onClick={() => navigate(a.path)}
-              className="bg-card rounded-2xl p-4 border border-border shadow-sm flex flex-col items-center gap-2 active:scale-95 transition-transform">
-              <div className={`w-12 h-12 rounded-xl ${a.bg} flex items-center justify-center`}>
-                <a.icon className={`w-6 h-6 ${a.color}`} />
+              className="bg-card rounded-2xl p-3 border border-border shadow-sm flex flex-col items-center gap-1.5 active:scale-95 transition-transform">
+              <div className={`w-10 h-10 rounded-xl ${a.bg} flex items-center justify-center`}>
+                <a.icon className={`w-5 h-5 ${a.color}`} />
               </div>
-              <span className="text-xs text-foreground font-semibold text-center leading-tight">{a.label}</span>
+              <span className="text-[11px] text-foreground font-semibold text-center leading-tight">{a.label}</span>
             </button>
           ))}
         </div>

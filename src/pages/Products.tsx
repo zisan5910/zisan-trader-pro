@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, deleteDoc, doc, addDoc, updateDoc, Timestamp } from "firebase/firestore";
 import { Plus, Search, Edit2, Trash2, ArrowLeft, Package, Save, Download, Upload, FileEdit, PlusCircle } from "lucide-react";
@@ -18,10 +18,12 @@ const unitOptions = ["পিস", "ব্যাগ", "কেজি", "লিট�
 
 const Products: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isAddRoute = location.pathname === "/products/add";
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(isAddRoute);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [form, setForm] = useState({
     product_name: "", buying_price: "", selling_price: "", currentStock: "", lowStockLimit: "5", unit: "পিস",
