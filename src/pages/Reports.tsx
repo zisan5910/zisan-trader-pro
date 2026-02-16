@@ -246,13 +246,13 @@ const Reports: React.FC = () => {
         pdf.text("Customer", margin + 22, y + 3);
         pdf.text("Product", margin + 62, y + 3);
         pdf.text("Qty", margin + 110, y + 3);
-        pdf.text("Amount", margin + 128, y + 3);
+        pdf.text("Paid", margin + 128, y + 3);
         pdf.text("Due", margin + 158, y + 3);
         y += lineHeight + 2;
 
         allSalesForDay.forEach((s, i) => {
           const date = s.created_at?.toDate?.();
-          const timeStr = date ? date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) : "";
+          const timeStr = date ? date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true }) : "";
           const customerName = bnToEn(String(s.customer_name || "Cash"));
           const items = s.items || [];
 
@@ -266,8 +266,8 @@ const Reports: React.FC = () => {
             pdf.text(customerName.substring(0, 18), margin + 22, y + 1);
             pdf.text("-", margin + 62, y + 1);
             pdf.text("-", margin + 110, y + 1);
-            pdf.text("Tk " + (s.total_amount || 0).toLocaleString(), margin + 128, y + 1);
-            pdf.text(s.due_amount > 0 ? "Tk " + s.due_amount.toLocaleString() : "-", margin + 158, y + 1);
+                pdf.text("Tk " + (s.paid_amount || 0).toLocaleString(), margin + 128, y + 1);
+                pdf.text(s.due_amount > 0 ? "Tk " + s.due_amount.toLocaleString() : "-", margin + 158, y + 1);
             y += lineHeight;
           } else {
             items.forEach((item: any, j: number) => {
@@ -284,7 +284,7 @@ const Reports: React.FC = () => {
               pdf.text(bnToEn(String(item.productName || "")).substring(0, 22), margin + 62, y + 1);
               pdf.text(String(item.quantity || 0), margin + 110, y + 1);
               if (j === 0) {
-                pdf.text("Tk " + (s.total_amount || 0).toLocaleString(), margin + 128, y + 1);
+                pdf.text("Tk " + (s.paid_amount || 0).toLocaleString(), margin + 128, y + 1);
                 pdf.text(s.due_amount > 0 ? "Tk " + s.due_amount.toLocaleString() : "-", margin + 158, y + 1);
               }
               y += lineHeight;

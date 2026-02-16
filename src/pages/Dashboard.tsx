@@ -93,7 +93,7 @@ const Dashboard: React.FC = () => {
       <div className="bg-primary px-5 pt-6 pb-12 rounded-b-[2rem]">
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl overflow-hidden border border-primary-foreground/20">
+            <div className="w-11 h-11 rounded-full overflow-hidden border border-primary-foreground/20">
               <img src="/owner.jpg" alt="Owner" className="w-full h-full object-cover" />
             </div>
             <div>

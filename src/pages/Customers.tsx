@@ -288,16 +288,6 @@ const Customers: React.FC = () => {
                       <input type="number" value={paymentAmount} onChange={(e) => setPaymentAmount(e.target.value)}
                         className="w-full h-12 px-3 rounded-xl border border-input bg-background text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         placeholder="টাকার পরিমাণ" />
-                      <div className="flex gap-2">
-                        {[{ v: "cash", l: "নগদ", icon: Banknote }, { v: "mobile_banking", l: "মোবাইল", icon: Phone }].map((m) => (
-                          <button key={m.v} onClick={() => setPaymentMethod(m.v)}
-                            className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors flex items-center justify-center gap-1.5 ${
-                              paymentMethod === m.v ? "bg-primary text-primary-foreground border-primary" : "bg-card text-foreground border-border"
-                            }`}>
-                            <m.icon className="w-4 h-4" /> {m.l}
-                          </button>
-                        ))}
-                      </div>
                       <button onClick={handleCollectPayment} disabled={savingPayment || !paymentAmount}
                         className="w-full h-12 rounded-xl bg-success text-success-foreground text-base font-bold disabled:opacity-50 active:scale-[0.98] transition-transform">
                         {savingPayment ? "সেভ হচ্ছে..." : "পেমেন্ট সেভ করুন"}

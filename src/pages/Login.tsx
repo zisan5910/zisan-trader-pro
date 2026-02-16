@@ -29,12 +29,11 @@ const Login: React.FC = () => {
     <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-background">
       <div className="w-full max-w-sm">
         <div className="flex flex-col items-center mb-8">
-          <div className="w-20 h-20 rounded-2xl overflow-hidden mb-4 shadow-lg border-2 border-primary/20">
+          <div className="w-24 h-24 rounded-full overflow-hidden mb-4 shadow-lg border-2 border-primary/20">
             <img src="/owner.jpg" alt="Owner" className="w-full h-full object-cover" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">জিসান ট্রেডার্স</h1>
-          <p className="text-muted-foreground text-sm mt-1">প্রোপাইটর: মো রকিবুল হাসান সেখ</p>
-          <p className="text-muted-foreground text-xs mt-0.5">ইনভেন্টরি ও সেলস ম্যানেজমেন্ট</p>
+          <p className="text-muted-foreground text-sm mt-1">মোঃ রকিবুল হাসান সেখ</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">

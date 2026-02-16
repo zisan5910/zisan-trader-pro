@@ -266,7 +266,7 @@ const MobileBanking: React.FC = () => {
                     <label className="text-xs text-muted-foreground block mb-1">
                       {type === "cash_in" ? "ক্যাশ ইন" : type === "cash_out" ? "ক্যাশ আউট" : "রিচার্জ"}
                     </label>
-                    <input type="text" inputMode="numeric"
+                    <input type="text" inputMode="decimal"
                       value={editRates[op.value]?.[type] !== undefined ? String(editRates[op.value][type]) : "0"}
                       onChange={(e) => {
                         const raw = e.target.value.replace(/[^0-9.]/g, "");
@@ -278,9 +278,9 @@ const MobileBanking: React.FC = () => {
                           });
                         }
                       }}
-                      className="w-full h-10 px-2 rounded-lg border border-input bg-background text-sm text-foreground text-center focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full h-12 px-3 rounded-xl border border-input bg-background text-base text-foreground text-center focus:outline-none focus:ring-2 focus:ring-ring"
                       placeholder="0" />
-                    <p className="text-[10px] text-muted-foreground text-center mt-0.5">কমিশন রেট</p>
+                    <p className="text-[10px] text-muted-foreground text-center mt-0.5">হাজারে কত টাকা</p>
                   </div>
                 ))}
               </div>
