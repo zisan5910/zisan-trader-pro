@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, deleteDoc, doc, addDoc, updateDoc, Timestamp, query, where, orderBy } from "firebase/firestore";
 import { Plus, Search, Edit2, Trash2, Phone, ArrowLeft, Save, Users as UsersIcon, Banknote, ChevronDown, ChevronUp, Download, Upload, CheckCircle, UserPlus, FileEdit, Coins } from "lucide-react";
@@ -13,10 +14,12 @@ interface Customer {
 }
 
 const Customers: React.FC = () => {
+  const location = useLocation();
+  const isAddRoute = location.pathname === "/customers/add";
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(isAddRoute);
   const [editing, setEditing] = useState<Customer | null>(null);
   const [form, setForm] = useState({ name: "", phone: "", address: "", notes: "" });
   const [saving, setSaving] = useState(false);

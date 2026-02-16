@@ -266,19 +266,21 @@ const MobileBanking: React.FC = () => {
                     <label className="text-xs text-muted-foreground block mb-1">
                       {type === "cash_in" ? "ক্যাশ ইন" : type === "cash_out" ? "ক্যাশ আউট" : "রিচার্জ"}
                     </label>
-                    <div className="relative">
-                      <input type="number" step="0.1"
-                        value={((editRates[op.value]?.[type] || 0) * 1000).toFixed(1)}
-                        onChange={(e) => {
-                          const val = Number(e.target.value) / 1000;
+                    <input type="text" inputMode="numeric"
+                      value={editRates[op.value]?.[type] !== undefined ? String(editRates[op.value][type]) : "0"}
+                      onChange={(e) => {
+                        const raw = e.target.value.replace(/[^0-9.]/g, "");
+                        const val = raw === "" ? 0 : Number(raw);
+                        if (!isNaN(val)) {
                           setEditRates({
                             ...editRates,
-                            [op.value]: { ...editRates[op.value], [type]: val }
+                            [op.value]: { ...editRates[op.value], [type]: raw === "" ? 0 : val }
                           });
-                        }}
-                        className="w-full h-10 px-2 rounded-lg border border-input bg-background text-sm text-foreground text-center focus:outline-none focus:ring-2 focus:ring-ring" />
-                    </div>
-                    <p className="text-[10px] text-muted-foreground text-center mt-0.5">৳/হাজারে</p>
+                        }
+                      }}
+                      className="w-full h-10 px-2 rounded-lg border border-input bg-background text-sm text-foreground text-center focus:outline-none focus:ring-2 focus:ring-ring"
+                      placeholder="0" />
+                    <p className="text-[10px] text-muted-foreground text-center mt-0.5">কমিশন রেট</p>
                   </div>
                 ))}
               </div>
